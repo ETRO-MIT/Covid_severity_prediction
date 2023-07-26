@@ -1,0 +1,13 @@
+kurtosis_healthy_min: -1.76
+kurtosis_healthy_max: 34.90
+kurtosis_ggo_min: -2.75
+kurtosis_ggo_max: 17.36
+kurtosis_cons_min: -2.75
+kurtosis_cons_max: 27.61
+
+skewness_healthy_min: -2.85
+skewness_healthy_max: 5.26
+skewness_ggo_min: -4.05
+skewness_ggo_max: 3.33
+skewness_cons_min: 0.85
+skewness_cons_max: -4.07

@@ -1,0 +1,26 @@
+
+name: 'COVID19'
+
+path_ids: '*/'          # how patient files are organised (e.g. 1 or more subfolders)
+ct_filename: 'CT'
+file_extension: '.nii.gz'
+
+info:
+  labels: {
+    'lesion': 1,
+    'lung': 2,
+    'background': 0,
+  }
+  image_keys: ["ct"]
+  all_keys: ["ct", "label"]
+
+
+data:
+  split: 0.9                          # ratio of data used for training vs validation
+  data_split_seed: 112                # set manual seed for the split of the training data into training/validation
+  spacing: [1.0, 1.0, 1.0]
+  patch_size: [128, 192, 128]
+  data_augmentation: "nnUNet"
+
+network:
+  model_name: "DynUNet"
