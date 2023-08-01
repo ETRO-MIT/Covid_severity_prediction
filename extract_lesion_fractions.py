@@ -27,37 +27,6 @@ def get_lesion_volume(segmentation, label):
     return volume
 
 
-def get_lesion_volume_per_lobe(segmentation, lobes, label):
-    segmentation = sitk.Cast(segmentation, sitk.sitkUInt8)
-    lobes = sitk.Cast(lobes, sitk.sitkUInt8)
-    lobes.CopyInformation(segmentation)
-
-    volumes_lesion = []
-    volumes_lobe = []
-    threshold_filter = sitk.ThresholdImageFilter()
-    mask_filter = sitk.MaskImageFilter()
-    for lobe_nr in range(1, 6):
-        threshold_filter.SetLower(lobe_nr)
-        threshold_filter.SetUpper(lobe_nr)
-        one_lobe = threshold_filter.Execute(lobes)
-
-        # Get the lobe volume
-        label_filter = sitk.LabelShapeStatisticsImageFilter()
-        label_filter.Execute(one_lobe)
-        labels = label_filter.GetLabels()
-        if lobe_nr in labels:
-            volume = label_filter.GetPhysicalSize(lobe_nr) / 1000  # GetPhysicalSize is in mm3 so /1000 to get ml
-        else:
-            volume = 0
-        volumes_lobe.append(volume)
-
-        # Get the volume of lesion in this lobe
-        segmentation_one_lobe = mask_filter.Execute(segmentation, one_lobe)
-        volumes_lesion.append(get_lesion_volume(segmentation_one_lobe, label))
-
-    return volumes_lesion, volumes_lobe
-
-
 def lesion_volumes_and_fractions(segmentation):
     volume_ggo = get_lesion_volume(segmentation, 1)
     volume_cons = get_lesion_volume(segmentation, 2)

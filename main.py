@@ -22,7 +22,7 @@ from src_lung_lesions.preprocessing.intensity import normalize_intensity
 path_current_dir = os.path.dirname(__file__)
 input_dir = os.path.join(path_current_dir, 'input')
 
-# Download the models and test images from Google Drive
+# Download the models from Google Drive
 download_models(os.path.join(path_current_dir, 'models'))
 
 # Segment the lungs and lesions for all patients in the input folder
