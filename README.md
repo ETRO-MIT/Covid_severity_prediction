@@ -5,7 +5,7 @@ The prediction is made based on features derived from the CT scan and the patien
 ## Usage
 All inputs should be provided in the _input_ folder according to: <br>
 - /input/patient_id/CT.nii.gz <br>
-- /input/demographic_data.csv
+- /input/demographic_data.csv <br>
 Two example patients are given in demographic_data.csv to demonstrate the format.
 ## Reference
 For more details see our [publication](https://doi.org/10.1186/s12911-025-02983-z). If you use this tool please cite it as follows:
